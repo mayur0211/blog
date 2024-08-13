@@ -6,16 +6,16 @@ import axios from 'axios';
 const Home = () => {
   const [blogList, setBlogList] = useState([]);
   const getBlogList = async () => {
-      try {
-          const { data } = await axios.post('http://192.168.1.25:8000/api/bloglist', { limit: 3 });
-          if (data?.status) {
-              setBlogList(data?.data);
-          }
-      } catch (error) {
+    try {
+      const { data } = await axios.post('http://192.168.1.25:8000/api/bloglist', { limit: 6 });
+      if (data?.status) {
+        setBlogList(data?.data);
       }
+    } catch (error) {
+    }
   };
   useEffect(() => {
-      getBlogList();
+    getBlogList();
   }, []);
   return (
     <>
@@ -102,175 +102,20 @@ const Home = () => {
             <div className='flex justify-between my-5'>
               <p className='font-bold text-lg'>Latest</p>
             </div>
-            {/* <div className='grid grid-cols-2 gap-4 border-b-2 border-black py-4'> */}
-            <div className='flex items-center gap-3 mb-4'>
-              <div >
-                <p className='text-sm text-orange-400 mt-2'>Business</p>
-                <p className='hover:underline font-semibold text-xl mb-2'>Cryptocurrency Experiences Volatility as Regulatory Concerns Persist</p>
-                <p className='text-md text-gray-500 mt-2'>The real test is not whether you avoid this failure, because you won’t. It’s whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere.</p>
+            {blogList?.map((item, index) => (
+              <div key={index} className='flex items-center justify-between mb-4'>
+                {/* <div key={index} className='grid grid-cols-2 mb-4'> */}
+                <div className='w-full'>
+                  <p className="text-sm text-orange-400 mt-2">{item?.sub_category?.name}</p>
+                  <Link to={`/blog/${item?.title_slug}`}><p className='hover:underline font-semibold text-xl mb-2'>{item?.title}</p></Link>
+                  <div className="text-md text-gray-500 mt-2 line-clamp-2 " dangerouslySetInnerHTML={{ __html: item?.description }}></div>
+                </div>
+                  <img src={item?.image} alt="img" className='object-cover w-[100px] h-[100px] ms-2 rounded-lg' />
               </div>
-              <div className='w-1/3'>
-                <img src="https://cdn.pixabay.com/photo/2024/01/09/13/08/wooden-house-8497574_1280.jpg" alt="img" className='object-cover' />
-              </div>
-            </div>
-            <div className='flex items-center gap-3 mb-4'>
-              <div >
-                <p className='text-sm text-orange-400 mt-2'>Business</p>
-                <p className='hover:underline font-semibold text-xl mb-2'>Cryptocurrency Experiences Volatility as Regulatory Concerns Persist</p>
-                <p className='text-md text-gray-500 mt-2'>The real test is not whether you avoid this failure, because you won’t. It’s whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere.</p>
-              </div>
-              <div className='w-1/3'>
-                <img src="https://cdn.pixabay.com/photo/2024/01/09/13/08/wooden-house-8497574_1280.jpg" alt="img" className='object-cover' />
-              </div>
-            </div>
-            <div className='flex items-center gap-3 mb-4'>
-              <div >
-                <p className='text-sm text-orange-400 mt-2'>Business</p>
-                <p className='hover:underline font-semibold text-xl mb-2'>Cryptocurrency Experiences Volatility as Regulatory Concerns Persist</p>
-                <p className='text-md text-gray-500 mt-2'>The real test is not whether you avoid this failure, because you won’t. It’s whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere.</p>
-              </div>
-              <div className='w-1/3'>
-                <img src="https://cdn.pixabay.com/photo/2024/01/09/13/08/wooden-house-8497574_1280.jpg" alt="img" className='object-cover' />
-              </div>
-            </div>
-            <div className='flex items-center gap-3 mb-4'>
-              <div >
-                <p className='text-sm text-orange-400 mt-2'>Business</p>
-                <p className='hover:underline font-semibold text-xl mb-2'>Cryptocurrency Experiences Volatility as Regulatory Concerns Persist</p>
-                <p className='text-md text-gray-500 mt-2'>The real test is not whether you avoid this failure, because you won’t. It’s whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere.</p>
-              </div>
-              <div className='w-1/3'>
-                <img src="https://cdn.pixabay.com/photo/2024/01/09/13/08/wooden-house-8497574_1280.jpg" alt="img" className='object-cover' />
-              </div>
-            </div>
-            <div className='flex items-center gap-3 mb-4'>
-              <div >
-                <p className='text-sm text-orange-400 mt-2'>Business</p>
-                <p className='hover:underline font-semibold text-xl mb-2'>Cryptocurrency Experiences Volatility as Regulatory Concerns Persist</p>
-                <p className='text-md text-gray-500 mt-2'>The real test is not whether you avoid this failure, because you won’t. It’s whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere.</p>
-              </div>
-              <div className='w-1/3'>
-                <img src="https://cdn.pixabay.com/photo/2024/01/09/13/08/wooden-house-8497574_1280.jpg" alt="img" className='object-cover' />
-              </div>
-            </div>
-            <div className='flex items-center gap-3 mb-4'>
-              <div >
-                <p className='text-sm text-orange-400 mt-2'>Business</p>
-                <p className='hover:underline font-semibold text-xl mb-2'>Cryptocurrency Experiences Volatility as Regulatory Concerns Persist</p>
-                <p className='text-md text-gray-500 mt-2'>The real test is not whether you avoid this failure, because you won’t. It’s whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere.</p>
-              </div>
-              <div className='w-1/3'>
-                <img src="https://cdn.pixabay.com/photo/2024/01/09/13/08/wooden-house-8497574_1280.jpg" alt="img" className='object-cover' />
-              </div>
-            </div>
-            <div className='flex items-center gap-3 mb-4'>
-              <div >
-                <p className='text-sm text-orange-400 mt-2'>Business</p>
-                <p className='hover:underline font-semibold text-xl mb-2'>Cryptocurrency Experiences Volatility as Regulatory Concerns Persist</p>
-                <p className='text-md text-gray-500 mt-2'>The real test is not whether you avoid this failure, because you won’t. It’s whether you let it harden or shame you into inaction, or whether you learn from it; whether you choose to persevere.</p>
-              </div>
-              <div className='w-1/3'>
-                <img src="https://cdn.pixabay.com/photo/2024/01/09/13/08/wooden-house-8497574_1280.jpg" alt="img" className='object-cover' />
-              </div>
-            </div>
 
-            <button className='border-primary border rounded-full py-1 px-4 text-primary'>View More</button>
+            ))}
+            {/* <button className='border-primary border rounded-full py-1 px-4 text-primary'>View More</button> */}
           </div>
-          {/* <div className='col-span-3 mx-2'>
-            <div className='border-y border-black'>
-              <div className='border my-2'>
-                <p className='font-bold text-lg text-center border-b py-5 mx-5'>Blog</p>
-                <p className='p-6 text-center'>Immerse yourself in a world of knowledge and creativity with every page turn.</p>
-              </div>
-            </div>
-            <div className='border-y border-black mt-2'>
-              <div className='border my-2'>
-                <div className='flex justify-between border-b py-3 mx-4'>
-                  <p className='font-semibold'>Recent</p>
-                  <p className='text-primary text-sm'>View All</p>
-                </div>
-                <div className='flex justify-between gap-4 p-3'>
-                  <div className='w-[65px] h-[60px]'>
-                    <img src="https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg" alt="img" className='rounded-full object-cover w-full h-full' />
-                  </div>
-                  <div>
-                    <p>Here Are the 4 Cheapest Electric Vehicles You Can Buy</p>
-                    <p className='text-sm text-primary'>Sep 2, 2023</p>
-                  </div>
-                </div>
-                <div className='flex justify-between gap-4 p-3'>
-                  <div className='w-[65px] h-[60px]'>
-                    <img src="https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg" alt="img" className='rounded-full object-cover w-full h-full' />
-                  </div>
-                  <div>
-                    <p>Here Are the 4 Cheapest Electric Vehicles You Can Buy</p>
-                    <p className='text-sm text-primary'>Sep 2, 2023</p>
-                  </div>
-                </div>
-                <div className='flex justify-between gap-4 p-3'>
-                  <div className='w-[65px] h-[60px]'>
-                    <img src="https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg" alt="img" className='rounded-full object-cover w-full h-full' />
-                  </div>
-                  <div>
-                    <p>Here Are the 4 Cheapest Electric Vehicles You Can Buy</p>
-                    <p className='text-sm text-primary'>Sep 2, 2023</p>
-                  </div>
-                </div>
-                <div className='flex justify-between gap-4 p-3'>
-                  <div className='w-[65px] h-[60px]'>
-                    <img src="https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg" alt="img" className='rounded-full object-cover w-full h-full' />
-                  </div>
-                  <div>
-                    <p>Here Are the 4 Cheapest Electric Vehicles You Can Buy</p>
-                    <p className='text-sm text-primary'>Sep 2, 2023</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className='border-y border-black mt-2'>
-              <div className='border my-2'>
-                <p className='font-bold text-lg border-b py-5 mx-5'>Explore Topics</p>
-                <div className='grid grid-cols-2'>
-                  <div className='flex items-center px-5 gap-3 my-2'>
-                    <div className='w-[50px] h-[50px]'>
-                      <img src="https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg" alt="img" className='rounded-full object-cover w-full h-full' />
-                    </div>
-                    <div>
-                      <p className='text-sm font-semibold mt-2 hover:underline cursor-pointer'>Business</p>
-                      <p className='text-sm text-gray-500 mt-1'>8 Post</p>
-                    </div>
-                  </div>
-                  <div className='flex items-center px-5 gap-3 my-2'>
-                    <div className='w-[50px] h-[50px]'>
-                      <img src="https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg" alt="img" className='rounded-full object-cover w-full h-full' />
-                    </div>
-                    <div>
-                      <p className='text-sm font-semibold mt-2 hover:underline cursor-pointer'>Business</p>
-                      <p className='text-sm text-gray-500 mt-1'>8 Post</p>
-                    </div>
-                  </div>
-                  <div className='flex items-center px-5 gap-3 my-2'>
-                    <div className='w-[50px] h-[50px]'>
-                      <img src="https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg" alt="img" className='rounded-full object-cover w-full h-full' />
-                    </div>
-                    <div>
-                      <p className='text-sm font-semibold mt-2 hover:underline cursor-pointer'>Business</p>
-                      <p className='text-sm text-gray-500 mt-1'>8 Post</p>
-                    </div>
-                  </div>
-                  <div className='flex items-center px-5 gap-3 my-2'>
-                    <div className='w-[50px] h-[50px]'>
-                      <img src="https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg" alt="img" className='rounded-full object-cover w-full h-full' />
-                    </div>
-                    <div>
-                      <p className='text-sm font-semibold mt-2 hover:underline cursor-pointer'>Business</p>
-                      <p className='text-sm text-gray-500 mt-1'>8 Post</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <Layout />
         </div>
       </div>

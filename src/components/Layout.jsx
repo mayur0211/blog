@@ -39,8 +39,8 @@ function Layout() {
                                 <div key={index} className='flex p-3 '>
                                     <img src={item?.image} alt="img" className='rounded-full object-cover w-[50px] h-[50px] me-3' />
                                     <div className='w-full'>
-                                        <Link to={`/subpage/${item?.title_slug}`} className='cursor-pointer hover:underline'>{item?.title}</Link>
-                                        <p className='text-sm text-primary mt-1'>{moment(item?.created_at).format('DD/MMM/YYYY')}</p>
+                                        <Link to={`/blog/${item?.title_slug}`} className='cursor-pointer hover:underline'>{item?.title}</Link>
+                                        <p className='text-sm text-primary mt-1'>{moment(item?.created_at).format('DD MMM, YYYY')}</p>
                                     </div>
                                 </div>
                             ))}</>

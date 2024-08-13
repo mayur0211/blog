@@ -11,7 +11,7 @@ const BlogDetails = () => {
     const [blogDetail, setBlogDetail] = useState([]);
     const getBlogDetail = async () => {
         try {
-            const { data } = await axios.post('http://192.168.1.25:8000/api/blogdetail', { slug });
+            const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/blogdetail', { slug });
             if (data?.status) {
                 setBlogDetail(data?.data);
             }
@@ -30,7 +30,7 @@ const BlogDetails = () => {
                         <div className='border-t-2 border-black pt-5 px-4'>
                             <p className='font-bold text-4xl'>{blogDetail?.headline}</p>
                             <p className='font-semibold text-xl mt-1 '>{blogDetail?.title}</p>
-                            <p className='text-md text-gray-500 my-4'>{moment(blogDetail?.created_at).format('DD/MMM/YYYY')}</p>
+                            <p className='text-md text-gray-500 my-4'>{moment(blogDetail?.created_at).format('DD MMM,YYYY')}</p>
                             <div className='h-[440px]'>
                                 <img src={blogDetail?.image} alt="" className='w-full h-full object-cover' />
                             </div>

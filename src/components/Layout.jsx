@@ -8,7 +8,7 @@ function Layout() {
     const [blogList, setBlogList] = useState([]);
     const getBlogList = async () => {
         try {
-            const { data } = await axios.post('http://192.168.1.25:8000/api/bloglist', { limit: 4 });
+            const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/bloglist', { limit: 4 });
             if (data?.status) {
                 setBlogList(data?.data);
             }
@@ -29,7 +29,7 @@ function Layout() {
                     </div>
                 </div>
                 <div className='border-y border-black mt-2'>
-                    <div className='border my-2'>
+                    <div className='border my-2 sticky top-0'>
                         <div className='flex justify-between border-b py-3 mx-4'>
                             <p className='font-semibold'>Recent</p>
                             <p className='text-primary text-sm'>View All</p>

@@ -9,7 +9,7 @@ const SubPage = () => {
     const [blogDetail, setBlogDetail] = useState([]);
     const getBlogDetail = async () => {
         try {
-            const { data } = await axios.post('http://192.168.1.25:8000/api/blogdetail', { slug });
+            const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/blogdetail', { slug });
             if (data?.status) {
                 setBlogDetail(data?.data);
             }

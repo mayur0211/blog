@@ -17,7 +17,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/allpost" element={<AllPost />} />
+          <Route path="/allcategory" element={<CategoryPage/>} />
           <Route path="/blog/:slug" element={<BlogDetails/>} />
           <Route path="/category/:slug" element={<CategoryPage />} />
         </Routes>

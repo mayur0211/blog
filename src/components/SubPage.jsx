@@ -33,49 +33,6 @@ const SubPage = () => {
                                 <img src={blogDetail?.image} alt="" className='w-full h-full object-cover' />
                             </div>
                             <div className='text-md text-gray-500 mt-4 mb-2' dangerouslySetInnerHTML={{__html:blogDetail?.description}}></div>
-
-                            {/* <div className='mt-8'>
-                            <p className='text-lg font-bold text-gray-500 my-1'>1. Regulatory Landscape and Market Sentiment</p>
-                            <p>
-                                <strong className='text-lg font-bold text-gray-500' >●    Uncertainty and Speculation:</strong> Cryptocurrency prices often react to regulatory announcements and policy changes by governments and regulatory bodies worldwide. Uncertainty surrounding legal frameworks, taxation, and compliance requirements can lead to heightened market volatility.
-                            </p>
-                        </div>
-                        <div className='mt-8'>
-                            <p className='text-lg font-bold text-gray-500 my-1'>2. Regulatory Landscape and Market Sentiment</p>
-                            <p>
-                                <strong className='text-lg font-bold text-gray-500' >●    Uncertainty and Speculation:</strong> Cryptocurrency prices often react to regulatory announcements and policy changes by governments and regulatory bodies worldwide. Uncertainty surrounding legal frameworks, taxation, and compliance requirements can lead to heightened market volatility.
-                            </p>
-                        </div>
-                        <div className='mt-8'>
-                            <p className='text-lg font-bold text-gray-500 my-1'>3. Regulatory Landscape and Market Sentiment</p>
-                            <p>
-                                <strong className='text-lg font-bold text-gray-500' >●    Uncertainty and Speculation:</strong> Cryptocurrency prices often react to regulatory announcements and policy changes by governments and regulatory bodies worldwide. Uncertainty surrounding legal frameworks, taxation, and compliance requirements can lead to heightened market volatility.
-                            </p>
-                        </div>
-                        <div className='mt-8'>
-                            <p className='text-lg font-bold text-gray-500 my-1'>4. Regulatory Landscape and Market Sentiment</p>
-                            <p>
-                                <strong className='text-lg font-bold text-gray-500' >●    Uncertainty and Speculation:</strong> Cryptocurrency prices often react to regulatory announcements and policy changes by governments and regulatory bodies worldwide. Uncertainty surrounding legal frameworks, taxation, and compliance requirements can lead to heightened market volatility.
-                            </p>
-                        </div>
-                        <div className='mt-8'>
-                            <p className='text-lg font-bold text-gray-500 my-1'>5. Regulatory Landscape and Market Sentiment</p>
-                            <p>
-                                <strong className='text-lg font-bold text-gray-500' >●    Uncertainty and Speculation:</strong> Cryptocurrency prices often react to regulatory announcements and policy changes by governments and regulatory bodies worldwide. Uncertainty surrounding legal frameworks, taxation, and compliance requirements can lead to heightened market volatility.
-                            </p>
-                        </div>
-                        <div className='mt-8'>
-                            <p className='text-lg font-bold text-gray-500 my-1'>6 Regulatory Landscape and Market Sentiment</p>
-                            <p>
-                                <strong className='text-lg font-bold text-gray-500' >●    Uncertainty and Speculation:</strong> Cryptocurrency prices often react to regulatory announcements and policy changes by governments and regulatory bodies worldwide. Uncertainty surrounding legal frameworks, taxation, and compliance requirements can lead to heightened market volatility.
-                            </p>
-                        </div>
-                        <div className='mt-8 mb-4'>
-                            <p className='text-lg font-bold text-gray-500 my-1'>Conclusion</p>
-                            <p>
-                                Cryptocurrency volatility remains intertwined with regulatory uncertainties, reflecting evolving attitudes towards digital assets and blockchain technology. Regulatory concerns impact market sentiment, liquidity, and institutional adoption, influencing price fluctuations and investment decisions. As global regulatory frameworks continue to evolve, achieving clarity and consensus may mitigate volatility, enhance investor confidence, and foster sustainable growth in the cryptocurrency market. Balancing innovation with regulatory compliance remains pivotal in shaping the future landscape of digital finance and blockchain innovation.
-                            </p>
-                        </div> */}
                         </div>
                     </>}
                     <div className='border-y-2 border-black pt-5 px-4 '>

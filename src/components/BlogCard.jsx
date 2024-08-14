@@ -11,7 +11,6 @@ const BlogCard = ({ blog }) => {
             <p className='text-sm text-orange-400 hover:underline mt-2 mb-1'>{blog?.sub_category?.name}</p>
             <Link to={`/blog/${blog.title_slug}`} className='text-lg font-semibold hover:underline mt-2'>{blog?.title}</Link>
             <p className='text-sm text-gray-500 mt-3'>{moment(blog?.created_at).format('DD MMM, YYYY')}</p>
-            {/* <p className='text-sm text-gray-500 mt-3'>May 19, 2022</p> */}
         </div>
     )
 }

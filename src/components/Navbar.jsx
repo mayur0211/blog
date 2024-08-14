@@ -1,16 +1,16 @@
 import { Menu } from "antd";
 import SubMenu from "antd/es/menu/SubMenu";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MenuOutlined, CloseOutlined, SearchOutlined } from '@ant-design/icons';
+import { SearchContext } from "../context";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [category, setCategory] = useState([]);
-    const [searchText, setSearchText] = useState('');
-    const [flterData, setFilterData] = useState([]);
     const navigate = useNavigate();
+    const { searchText, setSearchText, setSubmitSearch } = useContext(SearchContext);
     const getCategories = async () => {
         try {
             const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/category');
@@ -20,23 +20,15 @@ const Navbar = () => {
         } catch (error) {
         }
     };
-
-    const handleSearch = async () => {
-        try {
-            const {data} = await axios.post('https://blogcontrols.fansclubworld.com/api/bloglist', { search: searchText});
-            if (data?.status) {
-               setFilterData(data?.data);
-            }
-        } catch (error) {
-         }
-    };
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSubmitSearch(prev => prev + 5);
+        navigate(`/allcategory`);
+    }
     useEffect(() => {
         getCategories();
     }, []);
-    useEffect(() => {
-      
-    }, []);
+
     return (
         <nav className="bg-white">
             <div className="container mx-auto px-2 lg:px-6 ">
@@ -73,19 +65,18 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div className="sm:flex sm:items-center">
-                        <div className="relative">
-                                <input
-                                    type="text"
-                                    placeholder="Search"
-                                    className="px-4 py-2 pl-10 border rounded-full text-gray-800 outline-none"
-                                    onChange={(e) => setSearchText(e.target.value)}
-                                    onKeyDown={(e) => { if (e.key === 'Enter') handleSearch(); }} 
-                                    value={searchText}
-                                />
+                        <form className="relative" onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                className="px-4 py-2 pl-10 border rounded-full text-gray-800 outline-none"
+                                onChange={(e) => setSearchText(e.target.value)}
+                                value={searchText}
+                            />
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <SearchOutlined className="text-gray-800" />
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

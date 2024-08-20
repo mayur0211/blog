@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import moment from 'moment';
 import { Spin } from 'antd';
 import { Link } from 'react-router-dom';
+import { GetBlogListByLimit, GetTopCategory } from '../api';
 
 function Layout() {
     const [blogList, setBlogList] = useState([]);
@@ -12,7 +12,7 @@ function Layout() {
     const getBlogList = async () => {
         setLoading(true);
         try {
-            const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/bloglist', { limit: 4 });
+            const { data } = await GetBlogListByLimit({ limit: 4 });
             if (data?.status) {
                 setBlogList(data?.data);
                 setLoading(false);
@@ -27,7 +27,7 @@ function Layout() {
     const getTopCategory = async () => {
         setLoading(true);
         try {
-            const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/topcategory');
+            const {data} = await GetTopCategory();
             if (data?.status) {
                 setTopCategory(data?.data);
                 setLoading(false);
@@ -81,17 +81,17 @@ function Layout() {
                             {loading ? <div className='flex items-center justify-center col-span-2 my-4'><Spin className="custom-spin" /></div> :
                                 topCategory.length ? (
                                     topCategory?.map((item, index) => (
-                                    <div key={index} className='flex items-center px-5 gap-3 my-2'>
-                                        <div className='w-[50px] h-[50px]'>
-                                            <img src="https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg" alt="img" className='rounded-full object-cover w-full h-full' />
+                                        <div key={index} className='flex items-center px-5 gap-3 my-2'>
+                                            <div className='w-[50px] h-[50px]'>
+                                                <img src="https://cdn.pixabay.com/photo/2024/07/03/08/05/hot-air-balloon-8869138_1280.jpg" alt="img" className='rounded-full object-cover w-full h-full' />
+                                            </div>
+                                            <div>
+                                                <p className='text-sm font-semibold mt-2 hover:underline cursor-pointer'>{item?.name}</p>
+                                                <p className='text-sm text-gray-500 mt-1'>{item?.blog_count}</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className='text-sm font-semibold mt-2 hover:underline cursor-pointer'>{item?.name}</p>
-                                            <p className='text-sm text-gray-500 mt-1'>{item?.blog_count}</p>
-                                        </div>
-                                    </div>
                                     ))
-                                ): <div className='text-center my-2'>data not found</div>
+                                ) : <div className='text-center my-2'>data not found</div>
                             }
                         </div>
                     </div>

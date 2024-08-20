@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
-import axios from 'axios';
 import moment from 'moment';
 import { Spin } from 'antd';
+import { GetBlogListByLimit, GetBlogListBySlug } from '../api';
 
 const Home = () => {
   const [blogList, setBlogList] = useState([]);
@@ -13,7 +13,7 @@ const Home = () => {
   const getBlogList = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/bloglist', { limit: 50 });
+      const { data } = await GetBlogListByLimit({ limit: 50 });
       if (data?.status) {
         setBlogList(data?.data);
         setLoading(false);
@@ -26,11 +26,11 @@ const Home = () => {
   };
   const getCategoryWiseBlog = async () => {
     try {
-      const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/bloglist', { slug: "fitness-exercise" });
+      const { data } = await GetBlogListBySlug({ slug: "fitness-exercise" });
       if (data?.status) {
         setTothree(data?.data.slice(0, 3));
-      } 
-    } catch (err) {     
+      }
+    } catch (err) {
     }
   };
   useEffect(() => {

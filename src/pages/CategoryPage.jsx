@@ -2,9 +2,9 @@ import React, { useEffect, useState, useContext } from 'react'
 import Layout from '../components/Layout'
 import { useParams } from 'react-router-dom'
 import BlogCard from '../components/BlogCard';
-import axios from 'axios';
 import { Spin } from 'antd';
 import { SearchContext } from '../context';
+import { GetBlogListByAllParams } from '../api';
 
 
 
@@ -23,7 +23,7 @@ const CategoryPage = () => {
                 search: searchText,
                 limit: 10000
             }
-            const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/bloglist', params);
+            const { data } = await GetBlogListByAllParams(params);
             if (data?.status) {
                 setBlogList(data?.data);
                 setLoading(false)

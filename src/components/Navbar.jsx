@@ -1,10 +1,10 @@
 import { Menu } from "antd";
 import SubMenu from "antd/es/menu/SubMenu";
-import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MenuOutlined, CloseOutlined, SearchOutlined } from '@ant-design/icons';
 import { SearchContext } from "../context";
+import { GetCategory } from "../api";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +13,7 @@ const Navbar = () => {
     const { searchText, setSearchText, setSubmitSearch } = useContext(SearchContext);
     const getCategories = async () => {
         try {
-            const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/category');
+            const { data } = await GetCategory();
             if (data?.status) {
                 setCategory(data?.data);
             }

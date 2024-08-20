@@ -1,9 +1,9 @@
 import { Spin } from 'antd';
-import axios from 'axios';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../components/Layout';
+import { GetBlogDetail } from '../api';
 
 const BlogDetails = () => {
 
@@ -11,7 +11,7 @@ const BlogDetails = () => {
     const [blogDetail, setBlogDetail] = useState([]);
     const getBlogDetail = async () => {
         try {
-            const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/blogdetail', { slug });
+            const { data } = await GetBlogDetail({ slug });
             if (data?.status) {
                 setBlogDetail(data?.data);
             }
@@ -26,7 +26,7 @@ const BlogDetails = () => {
         <div className="container mx-auto p-2">
             <div className="grid grid-cols-10 grid-flow-col">
                 <div className='col-span-7 mx-2'>
-                    {blogDetail == '' ? <div className='my-2 h-[calc(100vh-250px)] justify-center flex items-center'><Spin tip="Loading..." size='large' className="custom-spin"  /></div> : <>
+                    {blogDetail == '' ? <div className='my-2 h-[calc(100vh-250px)] justify-center flex items-center'><Spin tip="Loading..." size='large' className="custom-spin" /></div> : <>
                         <div className='border-t-2 border-black pt-5 px-4'>
                             <p className='font-bold text-4xl'>{blogDetail?.headline}</p>
                             <p className='font-semibold text-xl mt-1 '>{blogDetail?.title}</p>

@@ -1,15 +1,16 @@
 import { Spin } from 'antd';
-import axios from 'axios';
+
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { GetBlogDetail } from '../api';
 
 const SubPage = () => {
     const { slug } = useParams();
     const [blogDetail, setBlogDetail] = useState([]);
     const getBlogDetail = async () => {
         try {
-            const { data } = await axios.post('https://blogcontrols.fansclubworld.com/api/blogdetail', { slug });
+            const { data } = await GetBlogDetail({ slug });
             if (data?.status) {
                 setBlogDetail(data?.data);
             }
@@ -24,7 +25,7 @@ const SubPage = () => {
         <div className="container mx-auto p-2">
             <div className="grid grid-cols-10 grid-flow-col">
                 <div className='col-span-7 mx-2'>
-                    {blogDetail == '' ?  <center className='my-2'><Spin  className="custom-spin"/></center> : <>
+                    {blogDetail == '' ? <center className='my-2'><Spin className="custom-spin" /></center> : <>
                         <div className='border-t-2 border-black pt-5 px-4'>
                             <p className='font-bold text-4xl'>{blogDetail?.headline}</p>
                             <p className='font-semibold text-xl mt-1 '>{blogDetail?.title}</p>
@@ -32,7 +33,7 @@ const SubPage = () => {
                             <div className='h-[440px]'>
                                 <img src={blogDetail?.image} alt="" className='w-full h-full object-cover' />
                             </div>
-                            <div className='text-md text-gray-500 mt-4 mb-2' dangerouslySetInnerHTML={{__html:blogDetail?.description}}></div>
+                            <div className='text-md text-gray-500 mt-4 mb-2' dangerouslySetInnerHTML={{ __html: blogDetail?.description }}></div>
                         </div>
                     </>}
                     <div className='border-y-2 border-black pt-5 px-4 '>
